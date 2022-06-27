@@ -12,6 +12,9 @@ class DownloadCaptions(Step):
     def process(self, data, inputs, utils):
         for url in data:
             print('Downloading caption for', url)
+            if utils.caption_file_exists(url):
+                print('Found existing caption file')
+                continue
             try:
                 srt = YouTubeTranscriptApi.get_transcript(utils.get_video_id_from_url(url), languages=["en", "en-US"])
             except (TranscriptsDisabled, NoTranscriptFound):
@@ -19,9 +22,6 @@ class DownloadCaptions(Step):
                 continue
 
             with open(utils.get_caption_filepath(url), "w") as f:
-                if utils.get_caption_filepath(url):
-                    print('Found existing caption file')
-                    continue
                 for i in srt:
                     f.write("{}\n".format(i))
 

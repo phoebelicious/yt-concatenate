@@ -19,7 +19,7 @@ class Utils:
 
     def video_list_file_exists(self, channel_id):
         path = self.get_video_list_filepath(channel_id)
-        os.path.exists(path) and os.path.getsize(path) > 0
+        return os.path.exists(path) and os.path.getsize(path) > 0
 
     @staticmethod
     def get_video_id_from_url(url):
@@ -30,4 +30,4 @@ class Utils:
 
     def caption_file_exists(self, url):
         path = self.get_caption_filepath(url)
-        os.path.exists(path) and os.path.getsize(path) > 0
+        return os.path.exists(path) and os.path.getsize(path) > 0
