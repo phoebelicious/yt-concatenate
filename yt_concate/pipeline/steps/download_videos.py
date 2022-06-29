@@ -19,6 +19,6 @@ class DownloadVideos(Step):
             video_links.append(url)
             video_ids.append(video_id)
             print('Downloading', url)
-            YouTube(url).streams.first().download(output_path=VIDEOS_DIR, filename=video_id + '.mp4')
+            YouTube(url).streams.get_highest_resolution().download(output_path=VIDEOS_DIR, filename=video_id + '.mp4')
 
         return data
