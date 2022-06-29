@@ -1,6 +1,5 @@
 import os
 
-from yt_concate.settings import CAPTIONS_DIR
 from yt_concate.settings import VIDEOS_DIR
 from yt_concate.settings import DOWNLOADS_DIR
 from yt_concate.settings import OUTPUT_DIR
@@ -14,7 +13,6 @@ class Utils:
     def create_dirs():
         os.makedirs(DOWNLOADS_DIR, exist_ok=True)
         os.makedirs(VIDEOS_DIR, exist_ok=True)
-        os.makedirs(CAPTIONS_DIR, exist_ok=True)
         os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     @staticmethod
