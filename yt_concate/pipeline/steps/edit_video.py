@@ -23,4 +23,7 @@ class EditVideo(Step):
         output_filepath = utils.get_output_video_filepath(channel_id, search_word)
         final_video.write_videofile(output_filepath, temp_audiofile='temp-audio.m4a', remove_temp=True, codec="libx264", audio_codec="aac")
 
+        for video in videos:
+            video.close()
+
         return data
