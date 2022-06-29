@@ -1,10 +1,11 @@
+from yt_concate.pipeline.steps.preflight import Preflight
 from yt_concate.pipeline.steps.get_video_list import GetVideoList
-from yt_concate.pipeline.steps.download_captions import DownloadCaptions
+from yt_concate.pipeline.steps.initialize_yt import InitializeYt
+from yt_concate.pipeline.steps.search_word import SearchWord
 from yt_concate.pipeline.steps.step import StepException
 from yt_concate.pipeline.pipeline import Pipeline
-from yt_concate.utils import Utils
-from yt_concate.pipeline.steps.preflight import Preflight
 from yt_concate.pipeline.steps.postflight import Postflight
+from yt_concate.utils import Utils
 
 
 CHANNEL_ID = 'UCoOss5XiPpnLHGmLrBvNkJg'
@@ -12,13 +13,15 @@ CHANNEL_ID = 'UCoOss5XiPpnLHGmLrBvNkJg'
 
 def main():
     inputs = {
-        'channel_id': CHANNEL_ID
+        'channel_id': CHANNEL_ID,
+        'search_word': 'fashion',
     }
 
     steps = [
         Preflight(),
         GetVideoList(),
-        DownloadCaptions(),
+        InitializeYt(),
+        SearchWord(),
         Postflight(),
         ]
 

@@ -1,8 +1,8 @@
 import urllib.request
 import json
 
-from yt_concate.pipeline.steps.step import Step
 from yt_concate.settings import API_KEY
+from yt_concate.pipeline.steps.step import Step
 
 
 class GetVideoList(Step):
@@ -38,18 +38,20 @@ class GetVideoList(Step):
             except KeyError:
                 break
 
-        # print(video_links)
+        print(video_links)
         self.write_to_file(video_links, utils.get_video_list_filepath(channel_id))
         return video_links
 
-    def write_to_file(self, video_links, filepath):
+    @staticmethod
+    def write_to_file(video_links, filepath):
         with open(filepath, 'w') as f:
             for url in video_links:
                 f.write(url + '\n')
 
-    def read_file(self, filepath):
+    @staticmethod
+    def read_file(filepath):
         video_links = []
-        with open(filepath, 'r') as f:
+        with open(filepath, 'r', encoding='utf-8') as f:
             for url in f:
                 video_links.append(url.strip())
         return video_links
