@@ -20,6 +20,13 @@ class Utils:
         return os.path.join(DOWNLOADS_DIR, channel_id + '.txt')
 
     def video_list_file_exists(self, channel_id):
-        path = self.get_video_list_filepath(channel_id)
-        return os.path.exists(path) and os.path.getsize(path) > 0
+        filepath = self.get_video_list_filepath(channel_id)
+        return os.path.exists(filepath) and os.path.getsize(filepath) > 0
 
+    @staticmethod
+    def get_video_filepath(video_id):
+        return os.path.join(VIDEOS_DIR, video_id + '.mp4')
+
+    def video_file_exists(self, video_id):
+        filepath = self.get_video_filepath(video_id)
+        return os.path.exists(filepath) and os.path.getsize(filepath) > 0
