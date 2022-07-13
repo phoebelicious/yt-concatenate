@@ -1,6 +1,7 @@
 import sys
 import getopt
 import logging
+from yt_concate.pipeline.pipeline import Pipeline
 from yt_concate.pipeline.steps.preflight import Preflight
 from yt_concate.pipeline.steps.get_video_list import GetVideoList
 from yt_concate.pipeline.steps.initialize_yt import InitializeYt
@@ -8,7 +9,6 @@ from yt_concate.pipeline.steps.search_word import SearchWord
 from yt_concate.pipeline.steps.download_videos import DownloadVideos
 from yt_concate.pipeline.steps.edit_videos import EditVideos
 from yt_concate.pipeline.steps.postflight import Postflight
-from yt_concate.pipeline.pipeline import Pipeline
 from yt_concate.utils import Utils
 
 CHANNEL_ID = 'UCoOss5XiPpnLHGmLrBvNkJg'
@@ -34,11 +34,10 @@ def command_line_arg():
     logging_level = logging.DEBUG
     cleanup = False
     fast = False
-    short_opts = 'hc:s:l:g:'
-    long_opts = 'help channel_id= search_word= limits= logging_level= cleanup fast'.split()
-
+    short_opt = 'hc:s:l:g:'
+    long_opt = 'help channel_id= search_word= limits= logging_level= cleanup fast'.split()
     try:
-        opts, args = getopt.getopt(sys.argv[1:], short_opts, long_opts)
+        opts, args = getopt.getopt(sys.argv[1:], short_opt, long_opt)
         print(opts)
     except getopt.GetoptError:
         print_usage()
@@ -68,7 +67,7 @@ def command_line_arg():
             cleanup = True
         elif opt == '--fast':
             fast = True
-        return channel_id, search_word, limits, logging_level, cleanup, fast
+    return channel_id, search_word, limits, logging_level, cleanup, fast
 
 
 def config_logger(logging_level):
@@ -88,7 +87,7 @@ def config_logger(logging_level):
 
 
 def main():
-    channel_id, search_word, limit, logging_level, cleanup, fast = command_line_arg()
+    channel_id, search_word, limits, logging_level, cleanup, fast = command_line_arg()
     inputs = {
         'channel_id': 'channel_id',
         'search_word': 'fashion',

@@ -10,7 +10,7 @@ class Pipeline:
         data = None
         for step in self.steps:
             try:
-                data = step.process(data, inputs, utils)
+                data = step.process(data, inputs, utils, logger)
             except StepException as e:
                 logger.warning('Exception occurred: ', e)
                 break
