@@ -1,7 +1,8 @@
 from .step import Step
-from .step import StepException
 
 
 class Postflight(Step):
-    def process(self, data, inputs, utils):
-        print('in postflight')
+    def process(self, data, inputs, utils, logger):
+        logger.info('In Postflight')
+        if inputs['cleanup']:
+            utils.remove_dirs()

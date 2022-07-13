@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from yt_concate.settings import VIDEOS_DIR
 from yt_concate.settings import DOWNLOADS_DIR
@@ -35,3 +36,7 @@ class Utils:
     def get_output_video_filepath(channel_id, search_word):
         filename = channel_id + '_' + search_word + '.mp4'
         return os.path.join(OUTPUT_DIR, filename)
+
+    @staticmethod
+    def remove_dirs():
+        shutil.rmtree(VIDEOS_DIR, ignore_errors=True)

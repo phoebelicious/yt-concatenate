@@ -3,8 +3,8 @@ from moviepy.editor import concatenate_videoclips
 from .step import Step
 
 
-class EditVideo(Step):
-    def process(self, data, inputs, utils):
+class EditVideos(Step):
+    def process(self, data, inputs, utils, logger):
         channel_id = inputs['channel_id']
         search_word = inputs['search_word']
         videos = []
@@ -16,13 +16,14 @@ class EditVideo(Step):
             video = VideoFileClip(filepath).subclip(start_time, end_time)
             videos.append(video)
 
-            if len(videos) >= inputs['limit']:
+            if len(videos) >= inputs['limits']:
                 break
 
         final_video = concatenate_videoclips(videos)
         output_filepath = utils.get_output_video_filepath(channel_id, search_word)
         final_video.write_videofile(output_filepath, temp_audiofile='temp-audio.m4a', remove_temp=True, codec="libx264", audio_codec="aac")
 
+        # closing VideoFileClips
         for video in videos:
             video.close()
 
