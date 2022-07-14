@@ -25,6 +25,9 @@ class YT:
             self.logger.warning(f'English subtitles are not available in the video {self.url}')
             return 0
 
+    def get_video_filepath(self):
+        return os.path.join(VIDEOS_DIR, self.id + '.mp4')
+
     def __str__(self):
         return '<YT(' + self.id + ')>'
 
