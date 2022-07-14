@@ -13,5 +13,5 @@ class SearchWord(Step):
                 if search_word in caption['text']:
                     f = Found(yt, caption)
                     found.append(f)
-        print(len(found))
+        logger.info(f'{(len(found))} times of {search_word} were mentioned in the videos.')
         return found

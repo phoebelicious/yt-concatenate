@@ -30,7 +30,7 @@ def print_usage():
 def command_line_arg():
     channel_id = CHANNEL_ID
     search_word = 'fashion'
-    limits = 70
+    limits = 80
     logging_level = logging.DEBUG
     cleanup = False
     fast = False
@@ -74,7 +74,7 @@ def config_logger(logging_level):
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
     formatter = logging.Formatter('%(levelname)s:%(asctime)s:%(message)s')
-    file_handler = logging.FileHandler('yt_concat_logging.log')
+    file_handler = logging.FileHandler('yt_concate_logging.log')
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
@@ -89,9 +89,9 @@ def config_logger(logging_level):
 def main():
     channel_id, search_word, limits, logging_level, cleanup, fast = command_line_arg()
     inputs = {
-        'channel_id': 'channel_id',
-        'search_word': 'fashion',
-        'limit': 70,
+        'channel_id': channel_id,
+        'search_word': search_word,
+        'limits': limits,
         'logging_level': logging_level,
         'cleanup': cleanup,
         'fast': fast,

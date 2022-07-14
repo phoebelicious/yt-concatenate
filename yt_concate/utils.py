@@ -28,8 +28,9 @@ class Utils:
     def get_video_filepath(video_id):
         return os.path.join(VIDEOS_DIR, video_id + '.mp4')
 
-    def video_file_exists(self, video_id):
-        filepath = self.get_video_filepath(video_id)
+    @staticmethod
+    def video_file_exists(yt):
+        filepath = yt.video_filepath
         return os.path.exists(filepath) and os.path.getsize(filepath) > 0
 
     @staticmethod
